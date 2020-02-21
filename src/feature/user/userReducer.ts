@@ -1,6 +1,10 @@
 import { IUserItem, IUserAction, FETCH_USER_START_REQUEST, FETCH_USER_SUCESS, FETCH_USER_FAILURE, FETCH_USER_END_REQUEST } from './userTypes';
 import { act } from 'react-dom/test-utils';
 
+export interface IApplicationStateTree {
+    user: IUserState
+}
+
 export interface IUserState {
     isLoading: boolean,
     users: IUserItem[],

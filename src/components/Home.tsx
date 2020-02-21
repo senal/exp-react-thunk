@@ -2,19 +2,14 @@ import React, {useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import axios from "axios";
 import { fetchUsersSuccess, fetchUsersEndRequest } from '../feature/user/userActions';
-import { IUserItem } from '../feature/user/userTypes';
 import { fetchUsersFailure, fetchUsersStartRequest } from './../feature/user/userActions';
+import { IApplicationStateTree } from './../feature/user/userReducer';
 
 export const Home : React.FC<{}> = () => {
 
-    const [users, isLoading, isExpired] = useSelector( (state) => {
-        const x = state as {user : {
-                isLoading: boolean,
-                users:IUserItem[],
-                error: string,
-                isExpired: boolean,
-            }}
-        return [x.user.users, x.user.isLoading, x.user.isExpired]});
+    const [users, isLoading, isExpired] = useSelector( (state : IApplicationStateTree ) => {
+        const {users, isLoading, isExpired} = state.user;
+        return [users, isLoading, isExpired]});
 
     const dispatch = useDispatch();
 
